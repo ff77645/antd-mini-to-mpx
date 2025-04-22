@@ -4,17 +4,28 @@ const { isDir, isExists } = require('./util.js')
 const corssApi = require('./corss-api.js')
 
 
+const TARGET_VERSION = '3.1.12'
 const root = process.cwd
 const baseDir = path.join(root,'node_modules/antd-mini/compiled/wechat/src')
 const ignoreFolder = ['_locale', '_util', 'mixins', 'style']
 if(!isExists(baseDir)) throw new Error('请先安装 antd-mini')
 
+
 main()
 
 function main() {
+  checkVersion()
   generateMpx(baseDir)
   replaceMixins()
   replaceSimply()
+}
+
+function checkVersion(){
+  const pkgJson = fs.readFileSync(path.join(root,'node_modules/antd-mini/package.json'),'utf8')
+  const pkg = JSON.parse(pkgJson)
+  if(pkg.version !== TARGET_VERSION){
+    console.warn(`目标版本: ${TARGET_VERSION},当前版本: ${pkg.version}.`)
+  }
 }
 
 function generateMpx(basePath) {
