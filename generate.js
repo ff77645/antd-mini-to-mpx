@@ -5,7 +5,7 @@ const corssApi = require('./corss-api.js')
 
 
 const TARGET_VERSION = '3.1.12'
-const root = process.cwd
+const root = process.cwd()
 const baseDir = path.join(root,'node_modules/antd-mini/compiled/wechat/src')
 const ignoreFolder = ['_locale', '_util', 'mixins', 'style']
 if(!isExists(baseDir)) throw new Error('请先安装 antd-mini')
@@ -134,7 +134,7 @@ function replaceSimply() {
   const originPath = path.join(baseDir, '_util/simply.js')
   const backPath = path.join(baseDir, '_util/simply-back.js')
   const componentPath = path.join(baseDir, '_util/component.js')
-  fs.copyFileSync(path.resolve('./component.js'), componentPath)
+  fs.copyFileSync(path.join(__dirname,'./component.js'), componentPath)
   if (!isExists(backPath)) {
     fs.copyFileSync(originPath, backPath)
   }
