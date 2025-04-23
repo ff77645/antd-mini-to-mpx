@@ -134,7 +134,7 @@ function replaceSimply() {
   const originPath = path.join(baseDir, '_util/simply.js')
   const backPath = path.join(baseDir, '_util/simply-back.js')
   const componentPath = path.join(baseDir, '_util/component.js')
-  fs.copyFileSync(path.resolve('./scripts/mpx/component.js'), componentPath)
+  fs.copyFileSync(path.resolve('./component.js'), componentPath)
   if (!isExists(backPath)) {
     fs.copyFileSync(originPath, backPath)
   }
